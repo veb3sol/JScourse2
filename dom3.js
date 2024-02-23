@@ -6,6 +6,11 @@ const div = document.querySelector('div')
 console.log(div.classList)      //DOMTokenList ['content', value: 'content']
 // вывод всех классов, value - как записано в коде
 
+// если несколько класов
+console.log(div.classList)  // DOMTokenList(2) ['content', 'ggg', value: 'content ggg']
+console.log(div.classList.value) //content ggg
+console.log(div.classList[0]) //content
+
 //добавить элементу классы - любое количество через зяпятую
 div.classList.add('asd', 'nasda')
 
