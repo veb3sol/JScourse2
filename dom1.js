@@ -55,5 +55,5 @@ console.log(div.parentNode)
 
 const link = div.querySelector('.link')
 console.log(link)       //<a href class="link">dolor</a>  -- та ссылка что в div
-console.log(link.parentElement)       // div - вернет прямого родителя
-console.log(link.closest('.content'))       // div - вернет ближайшего родителя с указаными параметрами
+const par = link.parentElement      // div - вернет прямого родителя
+console.log(par.closest('.content'))   // div - вернет ближайшего родителя с указаными параметрами
