@@ -10,6 +10,7 @@ btn.addEventListener('click', e => {
     console.log('click btn')
 })
 
+
 wrap.addEventListener('click', e => {
     console.log('click wrap')
 }, {capture: true})
@@ -25,3 +26,5 @@ document.body.addEventListener('click', e => {
 
 // вообще сначала происходит погружение а потом всплытие
 // просто погружение мы не отслеживаем
+
+// {capture: true} - в функциях которые вешаются на родителей, и тогда работает погружение
