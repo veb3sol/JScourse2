@@ -220,9 +220,9 @@ const themes = {
     function deleteTask(id){
         const {title} = objOfTasks[id]
         const isConfirm = confirm(`Точно удалить задачу: ${title}`)
-        if(!isConfirm) return isConfirm
+        if(!isConfirm) return isConfirm  //тут будет false
         delete objOfTasks[id]
-        return isConfirm
+        return isConfirm        //тут будет true
     }
 
     // удаление элемента с разметки
