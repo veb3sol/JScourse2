@@ -116,9 +116,14 @@ const themes = {
     // Elements UI
     setTheme(lastSelectTheme)
     const listContainer = document.querySelector('.tasks-list-section .list-group');
-    const form = document.forms['addTask']      // находим форму по имени
-    const inputTitle = form.elements['title']   //находим импуты в форме по имени
+
+    // находим форму по имени - по атрибуту формы name
+    const form = document.forms['addTask']
+
+     //находим импуты в форме по имени     
+    const inputTitle = form.elements['title']  
     const inputBody = form.elements['body']
+
     const themeSelect = document.getElementById('themSelect')
 
     renderAllTasks(objOfTasks)
@@ -128,22 +133,30 @@ const themes = {
     listContainer.addEventListener('click', onDeleteHendler) // по клику на список записей
     themeSelect.addEventListener('change', onThemeSelectHandler) // на изменение в селекте
 
-
+    // вывод записей из созданого обьекта обьектов
     function renderAllTasks(tasksList){
+        //если обьктов нету
         if(!tasksList){
             console.error('Передайте список задач');
             return;
         }
         // Создаем фрагмент который будем наполнять задачами
         const frag = document.createDocumentFragment()
+
+        // перебираем значения обьекта обьекта - записи
         Object.values(tasksList).forEach(task => {
+            //для каждого элемента вызываем функцию формирования разметки
             const li = listItemTemplate(task)
+            // разметку элемента заносим в фрагмент
             frag.appendChild(li)
         })
 
+        // выводим в блоке наполненный задачами фрагмент
         listContainer.appendChild(frag)
     }
 
+    // функция формирования разметки записи
+    // деструктуировали запись которая попадает на вход
     function listItemTemplate({_id, title, body} = {}){
         // console.log(_id, title)
         const li = document.createElement('li')
