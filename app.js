@@ -124,6 +124,7 @@ const themes = {
     const inputTitle = form.elements['title']  
     const inputBody = form.elements['body']
 
+    //находим селект темы
     const themeSelect = document.getElementById('themSelect')
 
     renderAllTasks(objOfTasks)
@@ -131,6 +132,8 @@ const themes = {
     // вешаем на форму обработчик submit
     form.addEventListener('submit', onFormSubmmitHandler)
     listContainer.addEventListener('click', onDeleteHendler) // по клику на список записей
+
+    // обработчик выбора темы
     themeSelect.addEventListener('change', onThemeSelectHandler) // на изменение в селекте
 
     // вывод записей из созданого обьекта обьектов
@@ -252,6 +255,7 @@ const themes = {
         // спрашиваем у юзера или он точно желает установить тему
         const isConfirmed = confirm(`Вы действительно желаете установить тему: ${selectTheme}`)
         if(!isConfirmed) {
+        // если не подтвердил изменение темы -- поменять на ту что была последней
             themeSelect.value = lastSelectTheme
             return
         }
@@ -266,7 +270,9 @@ const themes = {
        // получаем тему из обьекта с темами
        const selectedThemOdj = themes[name]
        //перебираем ключи и значения в теме
+       //entries - вернет масив масивов - в каждом 2 эл = ключ + значение
        Object.entries(selectedThemOdj).forEach(([key, value]) => {
+       // определенной переменной key устанавливаем значение value
             document.documentElement.style.setProperty(key, value)
        })    
     }
