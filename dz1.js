@@ -81,7 +81,7 @@ console.log(doulik, posleUlik)
 const pp = document.querySelector('p')
 console.log(pp.textContent)
 
-// 2 сщздать функцию, которая принимает аргумент - узел ДОМ и возращает инфу в ввиде обьекта -- тип узла, имя узла, кол дочерних узлов (если нету - 0)
+// 2 создать функцию, которая принимает аргумент - узел ДОМ и возращает инфу в ввиде обьекта -- тип узла, имя узла, кол дочерних узлов (если нету - 0)
 const dd = document.querySelector('.parent-1')
 console.dir(dd)
 
@@ -120,8 +120,7 @@ console.log(allAInUl(ulul))
 // 
 
 const elp = document.querySelector('p')
-console.dir(elp)
-const [...childNodes] = elp.childNodes
+const [...childNodes] = elp.childNodes //nodeList перегоняем в массив
 console.log(childNodes)      // [text, a, text, a, text]
 childNodes.forEach(node => {
     if(node.nodeType === 3){
@@ -134,51 +133,27 @@ const ul1 = document.querySelector('ul')
 ul1.classList.add('ul1')
 
 // 2 найти в коде ссылку, которая находится после ul, добавить ей id=link
-const l2 = document.querySelector('ul')
-console.dir(l2)
-// const nextEl = document.querySelector('.posleul')
-// console.dir(nextEl)
-// const script = document.querySelector('script')
-// console.dir(script) 
-// const aa = document.querySelector('a')
-// console.dir(aa) 
+const ul9 = document.querySelector('ul')
+
+
 
 function aAfter(ul){
-    const allA = document.querySelectorAll('a')
-    let u = false
-    let u1 = false
-    allA.forEach(a => {
-       
-        const isIk = isUlik(ul, a)
-        if(u === true && isIk === false) {
-            u1 = true
+    let nextUl9 = ul.nextElementSibling
+  
+    if(nextUl9.tagName === 'A'){
+        nextUl9.classList.add('pizdec')
+    }else{
+        const aaa = nextUl9.querySelectorAll('a')
+        if(aaa){
+            Object.values(aaa).forEach(a => {
+                a.classList.add('pizzzzzz')
+            })
         }
-        if (u1){
-            a.setAttribute('id', 'lolol')
-        }
-        u = isIk
-        console.log(isIk)
-        
-    })
-}
+    }
+    }
 
-function isUlik(ul, a){
-    let y = false
-    let rr = []
-    let curentEl = a.parentElement;
-    while(curentEl){
-            rr.push(curentEl);
-            curentEl = curentEl.parentElement
-        }
-    console.log(rr)
-    rr.forEach( e => {
-           if(e.localName === "ul"){
-            y = true
-            }
-        })
-    return y       
-}
-aAfter(l2)
+
+aAfter(ul9)
 
 // 3 на li (через одного) установить класс item
 
@@ -189,9 +164,7 @@ function cherez(olshki){
 let f = 0
  Object.values(olshki).forEach( e => {
     if(f === 0){
-        e.classList.add('item')
-    }
-    if(f === 0){
+        e.classList.add('item') 
         f = 1
     } else {
         f = 0
@@ -204,3 +177,5 @@ const aaa = document.querySelectorAll('a')
 aaa.forEach(a => {
     a.classList.add('custom-list')
 })
+
+
