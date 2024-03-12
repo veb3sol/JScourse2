@@ -100,8 +100,6 @@ const themes = {
     },
   };
 
-
-
 // самовызывающаяся функция
 (function(arrofTasks){
     // создаем обьект обьектов
@@ -215,7 +213,6 @@ const themes = {
         }
 
         objOfTasks[newTask._id] = newTask
-
         return {...newTask}
     }
 
@@ -232,8 +229,7 @@ const themes = {
     function deleteTaskFromHtml(confirmed, el){
         if(confirmed){
             el.remove()
-        }
-        
+        } 
     }
     
     function onDeleteHendler({target}){
