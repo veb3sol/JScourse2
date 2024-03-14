@@ -178,4 +178,13 @@ aaa.forEach(a => {
     a.classList.add('custom-list')
 })
 
-
+// Добавить li в список
+const uls = document.querySelector('ul')
+const counts = 4   //сколько надо добавить 
+const totalCounts = uls.children.length + counts
+for(let i = uls.children.length; i < totalCounts; i++){
+    const lis = document.createElement('li')
+    lis.classList.add('new-item')
+    lis.textContent = `item ${i+1}`
+    uls.appendChild(lis)
+}
