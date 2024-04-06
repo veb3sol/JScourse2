@@ -98,3 +98,5 @@ btnAddPost.addEventListener('click', e => {
         container.insertAdjacentElement('afterbegin', card)
     })
 })
+
+// Корсы - предзапрос на сервер, и ответ в котором указано на какие адреса и на какие методы сервер даст ответ
