@@ -6,9 +6,9 @@ const btnAddPost = document.querySelector('.btn-danger')
 
 function getPosts(cb){      //передаем колбэк
 const xhr =  new XMLHttpRequest(); // создаем экземпляр
-
+console.log(55555)
 // открытие запроса (не отправляет запрос а только настраивает его)
-xhr.open('get', 'https://jsonplaceholder.typicode.com/posts');
+xhr.open('get', 'http://jsonplaceholder.typicode.com/posts');
 // 1пар - метод запроса
 // url куда мы будем делать запрос
 
@@ -16,6 +16,7 @@ xhr.open('get', 'https://jsonplaceholder.typicode.com/posts');
 // load - событие когда мы успешно получили данные от сервера
 xhr.addEventListener('load', () => {
     // при ошибке 404 - {} -- но общение с сервером будет считаться как успешное
+    // xhr.responseText --- тут ответ от сервера
     const resp = JSON.parse(xhr.responseText) //преобразуем ответ от сервера в массив
     console.log('loaded')
     cb(resp)
@@ -30,7 +31,7 @@ xhr.addEventListener('error', () => {
 // Делаем запрос на сервер
 xhr.send();   // просто запрос, данные не передаем
 
-//console.log(xhr.responseText) // пустая строка - ответ еще не пришел
+console.log(xhr.responseText) // пустая строка - ответ еще не пришел
 }
 
 // создание поста
