@@ -34,9 +34,9 @@ xhr.send();   // просто запрос, данные не передаем
 console.log(xhr.responseText) // пустая строка - ответ еще не пришел
 }
 
+
 // создание поста
 function createPost(body, cb){  //отправляем тело запроса и колбэк
-    console.log('111111')
     const xhr =  new XMLHttpRequest();
     xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
     xhr.addEventListener('load', () => {
@@ -50,7 +50,7 @@ function createPost(body, cb){  //отправляем тело запроса �
     // Обработка ошибок
     xhr.addEventListener('error', () => {
     console.log('error') // вывод ошибки
-    })
+    });
     xhr.send(JSON.stringify(body)); 
 }
 // создание 1 карточки поста
