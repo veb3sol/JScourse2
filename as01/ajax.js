@@ -26,7 +26,7 @@ xhr.addEventListener('load', () => {
 // Обработка ошибок
 xhr.addEventListener('error', () => {
     console.log('error') // вывод ошибки
-})
+});
 
 // Делаем запрос на сервер
 xhr.send();   // просто запрос, данные не передаем
@@ -87,7 +87,8 @@ const container = document.querySelector('.container')
 // обработчики на кнопки
 btnGetPosts.addEventListener('click', e => {
     getPosts(renderPosts)
-})
+});
+
 btnAddPost.addEventListener('click', e => {
     const newPost = {
         title: 'Новый пост',
