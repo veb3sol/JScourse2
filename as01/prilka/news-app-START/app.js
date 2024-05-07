@@ -61,14 +61,26 @@ const newsService = (function(){
   const apiKey = '64521643b9fa4a1c9289d1292525ff9c'
   const apiUrl = 'https://newsapi.org/v2'
   return {
-    topHeadlines(country='ua', cb){
+    topHeadlines(country, cb){
       http.get(`${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`, cb)
     },
     everything(query, cb){
+      console.log(query)
       http.get(`${apiUrl}/everything?q=${query}&apiKey=${apiKey}`, cb)
     }
   }
 })();
+
+// поля формы
+const form = document.forms['newsControls']
+const countrySelect = form.elements['country']
+const searchInput = form.elements['search']
+
+// слушатель отправки на форму
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  loadNews()
+})
 
 //  init selects
 // когда загрузится док - подгрузятся плагины материалайза
@@ -79,17 +91,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // загрузка новостей при первой загрузке странички
 function loadNews(){
-  newsService.topHeadlines('ua', onGetResponse);
+  showLoader();
+  const country = countrySelect.value
+  const searchText = searchInput.value
+  if(!searchText){
+    newsService.topHeadlines(country, onGetResponse)
+  } else {
+    newsService.everything(searchText, onGetResponse)
+  }
+  
 }
 
 //функция которая отработает когда будут получены новост
 function onGetResponse(err, res){
+  removeLoader()
+  if(err){
+    showAlert(err, 'error-msg')
+    return
+  }
+  if(!res.articles.length){
+    // показать что статьей таких нету !!!!
+    console.log(111111)
+    return
+  }
   renderNews(res.articles)
 }
 
 // рендер новостей
 function renderNews(news){
   const newsContainer = document.querySelector('.row.grid-container')
+  if(newsContainer.children.length){
+    clearContainer(newsContainer)
+  }
   let fragment = ''
   news.forEach(newsItem => {
     fragment += newsTemplate(newsItem)
@@ -97,6 +130,16 @@ function renderNews(news){
 
   newsContainer.insertAdjacentHTML('afterbegin', fragment)
 
+}
+
+// очистка новостей
+function clearContainer(clearContainer){
+  // container.innerHTML = ''
+  let child = clearContainer.lastElementChild;
+  while(child){
+    clearContainer.removeChild(child)
+    child = clearContainer.lastElementChild
+  }
 }
 
 // рендерим 1 новость
@@ -114,4 +157,26 @@ function newsTemplate({urlToImage, title, description}){
     </div>
   </div>
   `
+}
+
+function showAlert(msg, type = 'success'){
+  M.toast({html: msg, classes: type})
+  // матириалайз html - что показывать,  classes - какой класс подставить
+}
+
+// показ прилодера - с матириалз
+function showLoader(){
+  document.body.insertAdjacentHTML(
+    'afterbegin',
+    `<div class="progress">
+      <div class="indeterminate"></div>  
+    </div>`);
+}
+
+// функция скрытия лоудера
+function removeLoader(){
+  const louder = document.querySelector('.progress')
+  if(louder){
+    louder.remove()
+  }
 }
