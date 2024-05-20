@@ -210,11 +210,13 @@ function getUserCreatedPost(userId){
 }
 
 // Promise.all([
-//     getPost2(1),
-//     getPostComments2(1),
+//     getPost2(23),
+//     getPostComments2(23),
 //     getUserCreatedPost(1)
 // ]).then(fulData => console.log(fulData))
 // then получит массив с тремя элементами - это ответы от функций(от функций-промисов)
+// 23 - id статьи
+// 1 - id автора
 
 Promise.all([
     getPost2(1),
